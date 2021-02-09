@@ -40,7 +40,7 @@ class Logger {
         return conn.createChannel();
       })
       .then((ch) => {
-        return ch.assertExchange(exchange, 'fanout', {durable: false})
+        return ch.assertExchange(exchange, 'fanout')
           .then((whatever) => {
             this.channel = ch;
             return true;
