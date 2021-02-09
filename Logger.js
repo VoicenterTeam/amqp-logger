@@ -62,7 +62,7 @@ class Logger {
 
   log (lvl, message) {
     if (this.channel && lvl <= this.lvl && typeof message === 'object') {
-      this.channel.publish(this.exchange, '', Buffer.from(JSON.stringify(Object.assign(this.pattern, message))));
+      this.channel.publish(this.exchange, '', Buffer.from(JSON.stringify(Object.assign(this.pattern, {DateTime: new Date().toISOString()}, message))));
     }
   }
 
