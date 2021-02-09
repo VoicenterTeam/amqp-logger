@@ -16,5 +16,8 @@
   ],
   "author": "Maksym Kyrylov",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/voicenterdev/amqplogger#readme"
+  "homepage": "https://bitbucket.org/voicenterdev/amqplogger#readme",
+  "dependencies": {
+    "amqplib": "^0.6.0"
+  }
 }
