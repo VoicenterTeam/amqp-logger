@@ -1,0 +1,24 @@
+{
+  "name": "amqp-logger",
+  "version": "1.0.0",
+  "description": "Log data to Amqp",
+  "main": "Logger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VoicenterTeam/amqp-logger.git"
+  },
+  "keywords": [
+    "log",
+    "amqp"
+  ],
+  "author": "Maksym Kyrylov",
+  "license": "MIT",
+  "homepage": "https://github.com/VoicenterTeam/amqp-logger",
+  "dependencies": {
+    "amqplib": "^0.6.0",
+    "log4node": "^0.1.6"
+  }
+}
