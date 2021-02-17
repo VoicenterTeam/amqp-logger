@@ -2,7 +2,6 @@
 
 Logger which should not kill process on channel fail
 
-
 ```js
 let logConfig = {
   "log_amqp": {
@@ -28,7 +27,7 @@ let logConfig = {
   "log_lvl": 3
 };
 
-let logger = require('./Logger')(logConfig);
+let logger = require('@voicenter-team/amqp-logger')(logConfig);
 
 setInterval(() => {
   console.log('log')
