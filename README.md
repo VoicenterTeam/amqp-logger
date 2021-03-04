@@ -27,7 +27,7 @@ let logConfig = {
   "log_lvl": 3
 };
 
-let logger = require('@voicenter-team/amqp-logger')(logConfig);
+let logger = require('./index').fastify(logConfig);
 
 setInterval(() => {
   console.log('log')
