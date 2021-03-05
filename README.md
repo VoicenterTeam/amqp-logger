@@ -6,34 +6,38 @@ Logger which should not kill process on channel fail
 let logConfig = {
     "log_amqp": [{
         "connection": {
-          "host": "192.168.140.111",
-          "port": 5672,
-          "ssl": false,
-          "username": "user",
-          "password": "password",
-          "vhost": "/",
-          "heartbeat": 5
+            "host": "192.168.140.111",
+            "port": 5672,
+            "ssl": false,
+            "username": "user",
+            "password": "password",
+            "vhost": "/",
+            "heartbeat": 5
         },
         "channel": {
-          "exchange_name": "TestExchange",
-          "queue_name": "TestQueue",
-          "prefetch": 5,
-          "exchange_type": "fanout"
+            "exchange_name": "TestExchange",
+            "queue_name": "TestQueue",
+            "prefetch": 5,
+            "exchange_type": "fanout",
+            "topic": "",
+            "options": {}
         }
     },   {
         "connection": {
-          "host": "192.168.140.112",
-          "port": 5672,
-          "ssl": false,
-          "username": "user",
-          "password": "password",
-          "vhost": "/",
-          "heartbeat": 5
+            "host": "192.168.140.112",
+            "port": 5672,
+            "ssl": false,
+            "username": "user",
+            "password": "password",
+            "vhost": "/",
+            "heartbeat": 5
         },
         "channel": {
-          "exchange_name": "TestExchange",
-          "prefetch": 5,
-          "exchange_type": "fanout"
+            "exchange_name": "TestExchange",
+            "prefetch": 5,
+            "exchange_type": "fanout",
+            "topic": "",
+            "options": {}
         }
     }],
     "pattern": {
