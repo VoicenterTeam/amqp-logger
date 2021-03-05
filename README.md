@@ -4,33 +4,61 @@ Logger which should not kill process on channel fail
 
 ```js
 let logConfig = {
-  "log_amqp": {
-    "proto": "amqp",
-    "host": "127.0.0.1",
-    "port": "5672",
-    "vhost": "/",
-    "user": "log_test",
-    "password": "log_test",
-    "exchange": "logger",
-    "retry": "10",
-    "timeout": "1000",
-    "exchangeType": "",
-    "key": "?"
-  },
-  "pattern": {
-    "DateTime": "",
-    "Title": "",
-    "Message": "",
-    "LoggerSpecificData": "localhost",
-    "LogSpecificData": "ThisLogType"
-  },
-  "log_lvl": 3
+    "log_amqp": [{
+        "connection": {
+          "host": "192.168.140.111",
+          "port": 5672,
+          "ssl": false,
+          "username": "user",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
+        },
+        "channel": {
+          "exchange_name": "TestExchange",
+          "queue_name": "TestQueue",
+          "prefetch": 5,
+          "exchange_type": "fanout"
+        }
+    },   {
+        "connection": {
+          "host": "192.168.140.112",
+          "port": 5672,
+          "ssl": false,
+          "username": "user",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
+        },
+        "channel": {
+          "exchange_name": "TestExchange",
+          "prefetch": 5,
+          "exchange_type": "fanout"
+        }
+    }],
+    "pattern": {
+        "DateTime": "",
+        "Title": "",
+        "Message": "",
+        "LoggerSpecificData": "localhost",
+        "LogSpecificData": "ThisLogType"
+    },
+    "meth_dict": {
+        "fatal": 0,
+        "error": 1,
+        "warn": 2,
+        "info": 3,
+        "debug": 4,
+        "trace": 5
+    },
+    "log_lvl": 3,
+    "self_log_lvl": 3
 };
 
 let logger = require('./index').fastify(logConfig);
 
 setInterval(() => {
   console.log('log')
-  logger.log(1, {Title: "Test", Message: "This is a test message"});
+    logger.fatal("Hello!!!");
 }, 3000);
 ```
