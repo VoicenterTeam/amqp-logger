@@ -1,6 +1,6 @@
 {
   "name": "@voicenter-team/amqp-logger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Log data to Amqp",
   "main": "index.js",
   "scripts": {
