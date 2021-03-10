@@ -15,11 +15,11 @@ class Logger {
   log(lvl, message) {
     let date = new Date().toISOString();
     if (lvl <= this.self_lvl && typeof message === 'object') {
-      let _message = JSON.stringify(Object.assign(this.pattern, { DateTime: date }, message));
+      let _message = JSON.stringify(Object.assign({}, this.pattern, { DateTime: date }, message));
       console.log(_message);
     }
     if (this.channel && lvl <= this.lvl && typeof message === 'object') {
-      let _message = JSON.stringify(Object.assign(this.pattern, { DateTime: date }, message));
+      let _message = JSON.stringify(Object.assign({}, this.pattern, { DateTime: date }, message));
       this.channel.publish(_message);
     }
   }
