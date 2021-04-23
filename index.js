@@ -25,8 +25,12 @@ module.exports = {
       .map((item) => {
         instance[item] = (message) => {
           let _m = {"Title": item, "LogLevel": _config.meth_dict[item]}
-          if (typeof message === "object" && message.hasOwnProperty('Message')) {
-            _m = Object.assign(message, _m);
+          if (typeof message === "object") {
+            if (message.hasOwnProperty('Message')) {
+              _m = Object.assign(message, _m);
+            } else {
+              _m.Message = JSON.stringify(message);
+            }
           } else {
             _m.Message = message;
           }

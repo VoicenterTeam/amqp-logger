@@ -4,42 +4,84 @@ Logger which should not kill process on channel fail
 
 ```js
 let logConfig = {
-    "log_amqp": [{
+    "log_amqp": [
+      {
         "connection": {
-            "host": "192.168.140.111",
-            "port": 5672,
-            "ssl": false,
-            "username": "user",
-            "password": "password",
-            "vhost": "/",
-            "heartbeat": 5
+          "host": "127.0.0.1",
+          "port": 5672,
+          "ssl": false,
+          "username": "user",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
         },
         "channel": {
-            "exchange_name": "TestExchange",
-            "queue_name": "TestQueue",
-            "prefetch": 5,
-            "exchange_type": "fanout",
-            "topic": "",
-            "options": {}
+          "directives": "ae",
+          "exchange_name": "TestE",
+          "exchange_type": "fanout",
+          "exchange_durable": true,
+          "topic": "",
+          "options": {}
         }
-    },   {
+      },
+      {
         "connection": {
-            "host": "192.168.140.112",
-            "port": 5672,
-            "ssl": false,
-            "username": "user",
-            "password": "password",
-            "vhost": "/",
-            "heartbeat": 5
+          "host": "127.0.0.1",
+          "port": 5672,
+          "ssl": false,
+          "username": "test",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
         },
         "channel": {
-            "exchange_name": "TestExchange",
-            "prefetch": 5,
-            "exchange_type": "fanout",
-            "topic": "",
-            "options": {}
+          "directives": "ae",
+          "exchange_name": "TestExchange",
+          "exchange_type": "fanout",
+          "exchange_durable": true,
+          "topic": "",
+          "options": {}
         }
-    }],
+      },
+      {
+        "connection": {
+          "host": "127.0.0.1",
+          "port": 5672,
+          "ssl": false,
+          "username": "test",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
+        },
+        "channel": {
+          "directives": "ae",
+          "exchange_name": "TestExchange1",
+          "exchange_type": "fanout",
+          "exchange_durable": true,
+          "topic": "",
+          "options": {}
+        }
+      },
+      {
+        "connection": {
+          "host": "127.0.0.1",
+          "port": 5672,
+          "ssl": false,
+          "username": "test",
+          "password": "password",
+          "vhost": "/",
+          "heartbeat": 5
+        },
+        "channel": {
+          "directives": "ae",
+          "exchange_name": "TestExchange2",
+          "exchange_type": "fanout",
+          "exchange_durable": true,
+          "topic": "",
+          "options": {}
+        }
+      }
+    ],
     "pattern": {
         "DateTime": "",
         "Title": "",
@@ -59,10 +101,11 @@ let logConfig = {
     "self_log_lvl": 3
 };
 
-let logger = require('./index').fastify(logConfig);
+let logger = require('./index').pastash(logConfig);
 
 setInterval(() => {
-  console.log('log')
     logger.fatal("Hello!!!");
+    logger.fatal({Data: "test"});
+    logger.fatal({Message: "Hello!!!", Data: "test"});
 }, 3000);
 ```

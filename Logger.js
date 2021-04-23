@@ -1,15 +1,14 @@
 let _logger = false;
 
 class Logger {
-  channel = false;
-  pattern = {};
 
   constructor(config) {
+    this.pattern = {};
     this.lvl = config.log_lvl;
     this.self_lvl = config.self_log_lvl;
     this.pattern = config.pattern;
     this.channel = new (require('@voicenter-team/failover-amqp-pool'))(config.log_amqp);
-    this.channel.connect();
+    this.channel.start();
   }
 
   log(lvl, message) {
@@ -20,7 +19,7 @@ class Logger {
     }
     if (this.channel && lvl <= this.lvl && typeof message === 'object') {
       let _message = JSON.stringify(Object.assign({}, this.pattern, { DateTime: date }, message));
-      this.channel.publish(_message);
+      this.channel.publish(_message, "rr");
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@voicenter-team/amqp-logger",
-  "version": "1.0.7",
+  "version": "1.1.1",
   "description": "Log data to Amqp",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "MIT",
   "homepage": "https://github.com/VoicenterTeam/amqp-logger",
   "dependencies": {
-    "@voicenter-team/failover-amqp-pool": "^1.0.5",
+    "@voicenter-team/failover-amqp-pool": "^1.1.1",
     "amqplib": "^0.6.0",
     "log4node": "^0.1.6"
   }
