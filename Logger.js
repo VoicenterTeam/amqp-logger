@@ -19,7 +19,7 @@ class Logger {
     }
     if (this.channel && lvl <= this.lvl && typeof message === 'object') {
       let _message = JSON.stringify(Object.assign({}, this.pattern, { DateTime: date }, message));
-      this.channel.publish(_message, "rr");
+      this.channel.publish(_message);
     }
   }
 }
