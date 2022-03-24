@@ -7,8 +7,10 @@ class Logger {
     this.lvl = config.log_lvl;
     this.self_lvl = config.self_log_lvl;
     this.pattern = config.pattern;
+    if(config.log_amqp){
     this.channel = new (require('@voicenter-team/failover-amqp-pool'))(config.log_amqp);
     this.channel.start();
+    }
   }
 
   log(lvl, message) {
