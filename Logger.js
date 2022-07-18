@@ -3,7 +3,6 @@ let _logger = false;
 class Logger {
 
   constructor(config) {
-    this.pattern = {};
     this.lvl = config.log_lvl;
     this.self_lvl = config.self_log_lvl;
     this.pattern = config.pattern;
