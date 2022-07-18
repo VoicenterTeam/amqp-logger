@@ -18,7 +18,8 @@
   "license": "MIT",
   "homepage": "https://github.com/VoicenterTeam/amqp-logger",
   "dependencies": {
-    "@voicenter-team/failover-amqp-pool": "^1.2.12",
+    "@voicenter-team/failover-amqp-pool": "git+https://github.com/VoicenterTeam/failover-amqp-pool.git",
+    "amqplib": "^0.6.0",
     "log4node": "^0.1.6"
   }
 }
