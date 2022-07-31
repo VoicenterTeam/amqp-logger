@@ -109,3 +109,23 @@ setInterval(() => {
     logger.fatal({Message: "Hello!!!", Data: "test"});
 }, 3000);
 ```
+Winston Transport
+```json
+const winston = require('winston');
+const amqpLogger = require("@VoicenterTeam/amqp-logger");
+
+let transport = amqpLogger.winstonTransport();
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'user-service' },
+    transports: [
+        new transport({winstonConfig: { filename: 'error.log', level: 'error' }, amqp: {}}),
+    ],
+});
+
+setInterval(() => {
+    logger.log('Log me');
+}, 1000);
+```

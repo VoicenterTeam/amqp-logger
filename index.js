@@ -26,22 +26,22 @@ function _mergeDeep(...objects) {
 
 module.exports = {
   fastify: (config = {}) => {
-    __config = (!_config) ? config : _mergeDeep(_config, config);
+    _config = (!_config) ? config : _mergeDeep(_config, config);
     let l = Logger(_config);
     let instance = {};
-    Object.getOwnPropertyNames(__config.meth_dict)
+    Object.getOwnPropertyNames(_config.meth_dict)
       .map((item) => {
         instance[item] = (message) => {
-          l.log(__config.meth_dict[item], {"Title": item, "Message": message});
+          l.log(_config.meth_dict[item], {"Title": item, "Message": message});
         }
       });
     return instance;
   },
   pastash: (config = {}) => {
-    __config = (!_config) ? config : _mergeDeep(_config, config);
+    _config = (!_config) ? config : _mergeDeep(_config, config);
     let l = Logger(_config);
     let instance = {};
-    Object.getOwnPropertyNames(__config.meth_dict)
+    Object.getOwnPropertyNames(_config.meth_dict)
       .map((item) => {
         instance[item] = (message) => {
           let _m = {"Title": item, "LogLevel": item}
@@ -54,9 +54,27 @@ module.exports = {
           } else {
             _m.Message = message;
           }
-          l.log(__config.meth_dict[item], _m);
+          l.log(_config.meth_dict[item], _m);
         }
       });
     return instance;
+  },
+  winstonTransport: () => {
+    const Transport = require('winston-transport');
+    class AmqpPoolTransport extends Transport {
+      constructor(opts) {
+        super(opts.winstonConfig);
+        console.log(opts)
+        _config = (!_config) ? opts.amqp : _mergeDeep(_config, opts.amqp);
+        this.l = Logger(_config);
+      }
+      log(info, callback) {
+        // do whatever you want with log data
+        this.l.log(info.level, info.message);
+        callback();
+      }
+    }
+
+    return AmqpPoolTransport;
   }
 };
